@@ -2,14 +2,18 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
 const box = 20;
-let snake = [{ x: 9 * box, y: 9 * box }];
+let snake = [
+    {x: 10, y: 10},
+    {x: 10, y: 11},
+    {x: 10, y: 12}
+];
 let direction = 'RIGHT';
 let food = {
     x: Math.floor(Math.random() * 20) * box,
     y: Math.floor(Math.random() * 20) * box
 };
 
-// Control the snake
+// this will allow you to control the snake
 document.addEventListener('keydown', directionControl);
 
 function directionControl(event) {
@@ -45,6 +49,17 @@ function draw() {
     if (direction === 'RIGHT') snakeX += box;
     if (direction === 'DOWN') snakeY += box;
 
+    <div class="controls">
+    <button onclick="changeDirection('up')">Up</button>
+    <button onclick="changeDirection('down')">Down</button>
+    <button onclick="changeDirection('left')">Left</button>
+    <button onclick="changeDirection('right')">Right</button>
+</div>
+    function changeDirection(newDirection) {
+    
+    }
+    
+
     // Check if snake eats food
     if (snakeX === food.x && snakeY === food.y) {
         food = {
@@ -79,5 +94,6 @@ function collision(head, array) {
 }
 
 // Call draw function every 100 ms
-let game = setInterval(draw, 100);
+let game = setInterval(gameLoop, 200);
+
         
